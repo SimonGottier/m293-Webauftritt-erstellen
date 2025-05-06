@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Artikel - Simons Blog</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Zusätzliche Stilregeln für Artikel-Seite */
+    .article-detail {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 1.5rem;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .article-header {
+      margin-bottom: 1.5rem;
+    }
+    
+    .article-title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 1rem;
+    }
+    
+    .article-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      color: #777;
+      font-size: 0.9rem;
+    }
+    
+    .article-author {
+      display: flex;
+      align-items: center;
+    }
+    
+    .author-image {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin-right: 0.5rem;
+      background-size: cover;
+      background-position: center;
+    }
+    
+    .article-image {
+      width: 100%;
+      height: 400px;
+      background-size: cover;
+      background-position: center;
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+    }
+    
+    .article-body {
+      line-height: 1.7;
+      color: #444;
+      font-size: 1.1rem;
+    }
+    
+    .article-body h3 {
+      margin-top: 1.5rem;
+      margin-bottom: 1rem;
+      color: #333;
+    }
+    
+    .login-message {
+      text-align: center;
+      padding: 3rem 1rem;
+      background-color: #f9f9f9;
+      border-radius: 8px;
+      margin: 2rem auto;
+      max-width: 600px;
+    }
+    
+    .login-message h2 {
+      margin-bottom: 1rem;
+      color: #333;
+    }
+    
+    .login-now-btn {
+      display: inline-block;
+      padding: 0.5rem 1.5rem;
+      background-color: #6c5ce7;
+      color: white;
+      border-radius: 4px;
+      font-weight: 600;
+      text-decoration: none;
+      margin-top: 1rem;
+      cursor: pointer;
+    }
+    
+    .login-now-btn:hover {
+      background-color: #5b4bc7;
+    }
+  </style>
+</head>
+<body>
+  <div class="page-container">
+    <!-- Header -->
+    <div class="header">
+      <div class="logo">Simons<span class="logo-accent">Blog</span></div>
+      <div class="nav-container">
+        <div class="nav-item" onclick="location.href='index.html'">Home</div>
+        <div class="nav-item" onclick="location.href='topics.html'">Themen</div>
+        <div class="nav-item" onclick="location.href='contact.html'">Kontakt</div>
+        <div class="nav-item active">Artikel</div>
+        <div class="nav-item login-btn" id="loginBtn">Login</div>
+      </div>
+    </div>
+
+    <!-- Artikel-Inhalt -->
+    <div class="article-detail" id="articleContent" style="display: none;">
+      <div class="article-header">
+        <div class="article-title"></div>
+        <div class="article-meta">
+          <div class="article-date"></div>
+          <div class="article-author">
+            <div class="author-image" style="background-image: url('/api/placeholder/50/50')"></div>
+            <div class="author-name"></div>
+          </div>
+        </div>
+      </div>
+      <div class="article-content">
+        <div class="article-image"></div>
+        <div class="article-body"></div>
+      </div>
+    </div>
+
+    <!-- Login-Nachricht wenn nicht eingeloggt -->
+    <div class="login-message" id="loginMessage" style="display: none;">
+      <h2>Dieser Inhalt ist nur für angemeldete Benutzer sichtbar</h2>
+      <p>Bitte logge dich ein, um den vollständigen Artikel zu sehen.</p>
+      <div class="login-now-btn" id="loginNowBtn">Jetzt einloggen</div>
+    </div>
+
+    <!-- Fehler-Nachricht wenn Artikel nicht gefunden -->
+    <div class="login-message" id="notFoundMessage" style="display: none;">
+      <h2>Artikel nicht gefunden</h2>
+      <p>Der gewünschte Artikel konnte nicht gefunden werden.</p>
+      <div class="login-now-btn" onclick="location.href='index.html'">Zurück zur Startseite</div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <div class="footer-content">
+        <div class="footer-column">
+          <div class="footer-title">Simons Blog</div>
+          <div class="footer-text">Ein Ort für moderne Entdecker – Technik, Natur & Visionen.</div>
+        </div>
+        <div class="footer-column">
+          <div class="footer-subtitle">Navigation</div>
+          <div class="footer-link" onclick="location.href='index.html'">Home</div>
+          <div class="footer-link" onclick="location.href='topics.html'">Themen</div>
+          <div class="footer-link" onclick="location.href='contact.html'">Kontakt</div>
+        </div>
+        <div class="footer-column">
+          <div class="footer-subtitle">Rechtliches</div>
+          <div class="footer-link">Impressum</div>
+          <div class="footer-link">Datenschutz</div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="copyright">© 2025 Simons Blog. Alle Rechte vorbehalten.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal für den Login -->
+  <div class="modal-overlay" id="loginModal" style="display:none;">
+    <div class="modal-container">
+      <div class="modal-close" id="closeLoginModal">×</div>
+      <div class="modal-title">Login</div>
+      <div class="login-form">
+        <div class="form-group">
+          <label for="username">Benutzername</label>
+          <input type="text" id="username" placeholder="Dein Benutzername">
+        </div>
+        <div class="form-group">
+          <label for="password">Passwort</label>
+          <input type="password" id="password" placeholder="Dein Passwort">
+        </div>
+        <button class="login-submit-btn" id="loginSubmitBtn">Einloggen</button>
+        <div id="login-error" class="login-error"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Script für die Artikelseite -->
+  <script src="main.js"></script>
+  <script>
+    // Artikel-Datenbank
+    const articles = {
+      "quantencomputer": {
+        title: "Quantencomputer revolutionieren die Technologiewelt",
+        date: "03.05.2025",
+        author: "Dr. Julia Klein",
+        image: "/api/placeholder/1200/800",
+        content: `
+          <p>Die neuesten Entwicklungen im Bereich Quantencomputing versprechen einen technologischen Durchbruch, der nahezu alle Bereiche der Informatik verändern könnte. Während klassische Computer mit Bits arbeiten, die entweder den Wert 0 oder 1 annehmen können, nutzen Quantencomputer sogenannte Qubits, die dank der Prinzipien der Quantenmechanik gleichzeitig beide Zustände annehmen können.</p>
+          
+          <h3>Was ist Quantencomputing?</h3>
+          <p>Quantencomputing nutzt die Prinzipien der Quantenmechanik, um Berechnungen durchzuführen, die mit klassischen Computern praktisch unmöglich wären. Durch Phänomene wie Superposition und Verschränkung können Quantencomputer bestimmte komplexe Probleme exponentiell schneller lösen als herkömmliche Computer.</p>
+          
+          <h3>Anwendungsgebiete</h3>
+          <p>Die potenziellen Anwendungsgebiete sind vielfältig und reichen von der Materialwissenschaft und Medikamentenentwicklung bis hin zur Kryptografie und künstlichen Intelligenz. Besonders in der Optimierung komplexer Systeme, wie etwa Verkehrsflüsse in Großstädten oder Lieferketten, könnten Quantencomputer ihre Stärken ausspielen.</p>
+          
+          <h3>Die Zukunft des Quantencomputings</h3>
+          <p>In der Zukunft könnten Quantencomputer in vielen Bereichen zum Einsatz kommen, in denen klassische Computer an ihre Grenzen stoßen. Die Technologie ist jedoch noch jung und es gibt zahlreiche Herausforderungen zu bewältigen, wie etwa die Fehlerkorrektur und die Skalierung von Quantensystemen.</p>
+        `
+      },
+      "html-zukunft": {
+        title: "HTML in der Zukunft",
+        date: "01.05.2025",
+        author: "Max Mustermann",
+        image: "/api/placeholder/1200/800",
+        content: `
+          <p>Wie HTML in den kommenden Jahren eine Renaissance erlebt und weiterhin das Rückgrat des modernen Webs bleibt – trotz vieler neuer Technologien.</p>
+          
+          <h3>Entwicklungen</h3>
+          <p>Neue semantische Tags, bessere Performance-Optimierungen und engere Integration mit Web-APIs machen HTML moderner denn je. Die Einführung von HTML-Modulen könnte die Art und Weise, wie wir Webseiten strukturieren, grundlegend verändern.</p>
+          
+          <h3>Progressive Web Apps</h3>
+          <p>Mit dem Aufstieg von Progressive Web Apps (PWAs) gewinnt HTML weiter an Bedeutung, da es die Grundlage für plattformübergreifende Anwendungen bildet, die wie native Apps funktionieren.</p>
+          
+          <h3>Fazit</h3>
+          <p>HTML bleibt das Rückgrat des Webs und wird auch in Zukunft eine zentrale Rolle spielen. Durch kontinuierliche Evolution und Anpassung an neue Anforderungen bleibt HTML relevant und leistungsfähig.</p>
+        `
+      },
+      "blockchain": {
+        title: "Die Macht der Blockchain",
+        date: "28.04.2025",
+        author: "Satoshi Nakamoto",
+        image: "/api/placeholder/1200/800",
+        content: `
+          <p>Blockchain-Technologie verändert die Art und Weise, wie wir über dezentrale Systeme denken und wie Vertrauen im digitalen Raum hergestellt werden kann.</p>
+          
+          <h3>Grundlagen der Blockchain</h3>
+          <p>Eine Blockchain ist eine kontinuierlich erweiterbare Liste von Datensätzen, die mittels kryptographischer Verfahren miteinander verkettet sind. Jeder Block enthält dabei einen kryptographisch sicheren Hash des vorhergehenden Blocks, einen Zeitstempel und Transaktionsdaten.</p>
+          
+          <h3>Anwendungsbereiche</h3>
+          <p>Neben Kryptowährungen findet die Blockchain-Technologie auch in anderen Bereichen Anwendung, wie etwa in der Lieferkettenverfolgung, im Gesundheitswesen, bei digitalen Identitäten und im Bereich der Smart Contracts.</p>
+          
+          <h3>Herausforderungen und Lösungsansätze</h3>
+          <p>Trotz ihres Potenzials steht die Blockchain-Technologie vor einigen Herausforderungen, wie etwa Skalierbarkeit, Energieverbrauch und regulatorische Unsicherheiten. Verschiedene Ansätze wie Proof-of-Stake oder Layer-2-Lösungen versuchen, diese Probleme zu lösen.</p>
+        `
+      },
+      "programmierung-zukunft": {
+        title: "Die Zukunft der Programmierung",
+        date: "25.04.2025",
+        author: "Lisa Müller",
+        image: "/api/placeholder/1200/800",
+        content: `
+          <p>Wie wird sich die Programmierung in den nächsten Jahren entwickeln? Von KI-gestützter Entwicklung bis hin zu neuen Paradigmen – ein Blick in die Zukunft.</p>
+          
+          <h3>KI-gestützte Entwicklung</h3>
+          <p>Künstliche Intelligenz wird zunehmend in der Softwareentwicklung eingesetzt, um Programmierern bei der Codegenerierung, Fehlersuche und Optimierung zu helfen. Tools wie GitHub Copilot sind erst der Anfang dieser Entwicklung.</p>
+          
+          <h3>Low-Code und No-Code Plattformen</h3>
+          <p>Diese Plattformen ermöglichen es auch Nicht-Programmierern, Anwendungen zu erstellen, indem sie visuelle Interfaces und vorgefertigte Komponenten bereitstellen. Sie demokratisieren die Softwareentwicklung und machen sie einem breiteren Publikum zugänglich.</p>
+          
+          <h3>Neue Programmierparadigmen</h3>
+          <p>Funktionale Programmierung, reaktive Programmierung und quantenresistente Algorithmen gewinnen an Bedeutung, während die Grenzen zwischen verschiedenen Paradigmen verschwimmen.</p>
+        `
+      },
+      "javascript-frameworks": {
+        title: "JavaScript Frameworks im Jahr 2025",
+        date: "15.04.2025",
+        author: "Michael Weber",
+        image: "/api/placeholder/1200/800",
+        content: `
+          <p>Ein Überblick über die aktuellsten JavaScript-Frameworks und ihre Anwendungen in modernen Webprojekten.</p>
+          
+          <h3>Die Top-Frameworks</h3>
+          <p>Neben den Klassikern wie React und Angular gibt es neue aufstrebende Frameworks, die mit innovativen Konzepten und optimierter Performance überzeugen. Besonders im Bereich der Meta-Frameworks, die Server- und Client-Rendering kombinieren, gab es bedeutende Fortschritte.</p>
+          
+          <h3>Trends</h3>
+          <p>Mikroarchitekturen und Server-Components sind die großen Trends. Auch die Integration von WebAssembly für leistungsintensive Aufgaben nimmt zu, während die Progressive Enhancement dank neuer Browser-APIs ein Comeback feiert.</p>
+          
+          <h3>Was Entwickler wählen sollten</h3>
+          <p>Die Wahl des richtigen Frameworks hängt stark vom Projektkontext ab. Während einige Frameworks auf schnelle Entwicklung ausgerichtet sind, bieten andere bessere Performance oder mehr Flexibilität. Eine gründliche Analyse der Anforderungen ist daher unerlässlich.</p>
+        `
+      },
+      "zukunftstrends-it": {
+        title: "Zukunftstrends in der IT",
+        date: "10.04.2025",
+        author: "Anna Schneider",
+        image: "/api/placeholder/1200/800",
+        content: `
+          <p>Welche Trends werden die IT-Branche in den kommenden Jahren prägen? Von Edge Computing bis hin zu Quantum Computing – hier sind die wichtigsten Entwicklungen.</p>
+          
+          <h3>Edge Computing</h3>
+          <p>Edge Computing gewinnt zunehmend an Bedeutung, da immer mehr Daten direkt am Ort ihrer Entstehung verarbeitet werden müssen, um Latenzzeiten zu reduzieren und Bandbreite zu sparen. Dies ist besonders wichtig für IoT-Anwendungen und autonome Systeme.</p>
+          
+          <h3>Quantum Computing</h3>
+          <p>Quantencomputer könnten traditionelle Computer in bestimmten Bereichen ablösen, insbesondere bei komplexen Berechnungen, wie sie in der Kryptografie, Materialwissenschaft oder Pharmaindustrie vorkommen.</p>
+          
+          <h3>Nachhaltigkeit in der IT</h3>
+          <p>Grüne IT wird immer wichtiger, da Rechenzentren einen erheblichen Energieverbrauch haben. Neue Technologien zur Energieeinsparung, alternative Kühlmethoden und erneuerbare Energien stehen im Fokus der Entwicklung.</p>
+        `
+      },
+      "pflanzen-arbeitsplatz": {
+        title: "Pflanzen für deinen Arbeitsplatz",
+        date: "05.04.2025",
+        author: "Laura Grün",
+        image: "/api/placeholder/1200/800",
+        content: `
+          <p>Die richtigen Pflanzen können die Produktivität und das Wohlbefinden am Arbeitsplatz steigern. Welche eignen sich besonders gut für deinen Schreibtisch?</p>
+          
+          <h3>Die besten Pflanzen für Büros</h3>
+          <p>Diese Pflanzen benötigen wenig Licht und Pflege, sind also ideal für Büroumgebungen: Sukkulenten, Sansevieria (Bogenhanf), Pothos (Efeutute), ZZ-Pflanze und Friedenslilie. Sie verbessern nicht nur die Luftqualität, sondern sind auch ansprechend für das Auge.</p>
+          
+          <h3>Vorteile von Büropflanzen</h3>
+          <p>Pflanzen verbessern die Luftqualität, indem sie Schadstoffe filtern und die Luftfeuchtigkeit regulieren. Studien haben gezeigt, dass sie Stress reduzieren, die Konzentration fördern und die Kreativität steigern können. Außerdem verleihen sie dem Arbeitsplatz eine persönliche Note.</p>
+          
+          <h3>Pflege-Tipps</h3>
+          <p>Selbst wenn du keinen grünen Daumen hast, kannst du mit diesen Tipps deine Büropflanzen am Leben erhalten: Stelle einen Gießplan auf, beachte die Lichtbedürfnisse jeder Pflanze und achte auf Anzeichen von Über- oder Unterwässerung.</p>
+        `
+      },
+      "gesundes-sitzen": {
+        title: "Gesundes Sitzen am Schreibtisch",
+        date: "01.04.2025",
+        author: "Thomas Rücken",
+        image: "/api/placeholder/1200/800",
+        content: `
+          <p>Tipps für ergonomisches Sitzen und die Vorbeugung von Rückenschmerzen bei der Arbeit am Schreibtisch – ein wichtiges Thema für alle, die viel Zeit im Sitzen verbringen.</p>
+          
+          <h3>Die richtige Sitzhaltung</h3>
+          <p>Achte auf diese Punkte für eine gesunde Sitzhaltung: Füße flach auf dem Boden, Knie im 90-Grad-Winkel, Lendenwirbelsäule unterstützt, aufrechte Haltung mit entspannten</p>` }}

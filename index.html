@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Simons Blog</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="page-container">
+    <!-- Header -->
+    <div class="header">
+      <div class="logo">Simons<span class="logo-accent">Blog</span></div>
+      <div class="nav-container">
+        <div class="nav-item active">Home</div>
+        <div class="nav-item" onclick="location.href='topics.html'">Themen</div>
+        <div class="nav-item" onclick="location.href='contact.html'">Kontakt</div>
+        <div class="nav-item" id="artikelLink" onclick="location.href='themen.html'">Artikel</div>
+        <div class="nav-item login-btn" id="loginBtn">Login</div>
+      </div>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="hero">
+      <div class="hero-content">
+        <div class="hero-title">Willkommen bei Simons Blog</div>
+        <div class="hero-subtitle">Entdecke spannende Artikel</div>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <div class="section-title">Artikelübersicht:</div>
+      <div class="articles-grid" id="articlesGrid">
+        <!-- Artikel werden hier dynamisch geladen -->
+        <div class="article-card">
+          <div class="article-title">Quantencomputer revolutionieren die Technologiewelt</div>
+          <div class="article-preview">Die neuesten Entwicklungen im Bereich Quantencomputing versprechen einen technologischen Durchbruch...</div>
+          <a href="artikel.html?id=quantencomputer" class="read-more-btn">Lesen</a>
+        </div>
+        <div class="article-card">
+          <div class="article-title">HTML in der Zukunft</div>
+          <div class="article-preview">Wie HTML in den kommenden Jahren eine Renaissance erlebt...</div>
+          <a href="artikel.html?id=html-zukunft" class="read-more-btn">Lesen</a>
+        </div>
+        <div class="article-card">
+          <div class="article-title">Die Macht der Blockchain</div>
+          <div class="article-preview">Blockchain-Technologie verändert die Art und Weise, wie wir über dezentrale Systeme denken...</div>
+          <a href="artikel.html?id=blockchain" class="read-more-btn">Lesen</a>
+        </div>
+        <div class="article-card">
+          <div class="article-title">Die Zukunft der Programmierung</div>
+          <div class="article-preview">Wie wird sich die Programmierung in den nächsten Jahren entwickeln?</div>
+          <a href="artikel.html?id=programmierung-zukunft" class="read-more-btn">Lesen</a>
+        </div>
+      </div>
+
+      <!-- Mehr Artikel anzeigen -->
+      <div class="more-articles">
+        <div class="section-title">Weitere beliebte Artikel:</div>
+        <div class="article-list">
+          <div class="article-item">
+            <h3>JavaScript Frameworks im Jahr 2025</h3>
+            <p class="article-meta">15.04.2025 – Michael Weber</p>
+            <a href="artikel.html?id=javascript-frameworks" class="read-more">Lesen</a>
+          </div>
+          
+          <div class="article-item">
+            <h3>Zukunftstrends in der IT</h3>
+            <p class="article-meta">10.04.2025 – Anna Schneider</p>
+            <a href="artikel.html?id=zukunftstrends-it" class="read-more">Lesen</a>
+          </div>
+          
+          <div class="article-item">
+            <h3>Pflanzen für deinen Arbeitsplatz</h3>
+            <p class="article-meta">05.04.2025 – Laura Grün</p>
+            <a href="artikel.html?id=pflanzen-arbeitsplatz" class="read-more">Lesen</a>
+          </div>
+          
+          <div class="article-item">
+            <h3>Gesundes Sitzen am Schreibtisch</h3>
+            <p class="article-meta">01.04.2025 – Thomas Rücken</p>
+            <a href="artikel.html?id=gesundes-sitzen" class="read-more">Lesen</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Newsletter -->
+      <div class="newsletter-container">
+        <div class="newsletter-title">Newsletter abonnieren</div>
+        <div class="newsletter-text">Erhalte News zu neuen Artikeln und Trends.</div>
+        <div class="newsletter-form">
+          <input type="email" class="email-input" placeholder="Deine E-Mail-Adresse" />
+          <button class="subscribe-btn">Abonnieren</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <div class="footer-content">
+        <div class="footer-column">
+          <div class="footer-title">Simons Blog</div>
+          <div class="footer-text">Ein Ort für moderne Entdecker – Technik, Natur & Visionen.</div>
+        </div>
+        <div class="footer-column">
+          <div class="footer-subtitle">Navigation</div>
+          <div class="footer-link" onclick="location.href='index.html'">Home</div>
+          <div class="footer-link" onclick="location.href='topics.html'">Themen</div>
+          <div class="footer-link" onclick="location.href='contact.html'">Kontakt</div>
+        </div>
+        <div class="footer-column">
+          <div class="footer-subtitle">Rechtliches</div>
+          <div class="footer-link">Impressum</div>
+          <div class="footer-link">Datenschutz</div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="copyright">© 2025 Simons Blog. Alle Rechte vorbehalten.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal für den Login -->
+  <div class="modal-overlay" id="loginModal" style="display:none;">
+    <div class="modal-container">
+      <div class="modal-close" id="closeLoginModal">×</div>
+      <div class="modal-title">Login</div>
+      <div class="login-form">
+        <div class="form-group">
+          <label for="username">Benutzername</label>
+          <input type="text" id="username" placeholder="Dein Benutzername">
+        </div>
+        <div class="form-group">
+          <label for="password">Passwort</label>
+          <input type="password" id="password" placeholder="Dein Passwort">
+        </div>
+        <button class="login-submit-btn" id="loginSubmitBtn">Einloggen</button>
+        <div id="login-error" class="login-error"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Nur das externe script.js einbinden, zusätzliche Funktionalität für die Seite -->
+  <script src="main.js"></script>
+  <script>
+    // Prüfen, ob Benutzer eingeloggt ist
+    document.addEventListener('DOMContentLoaded', function() {
+      const isLoggedIn = localStorage.getItem('loggedIn') === 'true';
+      const loginBtn = document.getElementById('loginBtn');
+      
+      // Login-Button Text anpassen
+      if (loginBtn) {
+        loginBtn.textContent = isLoggedIn ? 'Logout' : 'Login';
+        loginBtn.addEventListener('click', function() {
+          if (isLoggedIn) {
+            localStorage.removeItem('loggedIn');
+            location.reload();
+          } else {
+            toggleLoginModal();
+          }
+        });
+      }
+      
+      // Modal-Funktionen
+      function toggleLoginModal() {
+        const modal = document.getElementById('loginModal');
+        if (modal) {
+          modal.style.display = modal.style.display === 'flex' ? 'none' : 'flex';
+        }
+      }
+      
+      // Close-Button im Modal
+      const closeBtn = document.getElementById('closeLoginModal');
+      if (closeBtn) {
+        closeBtn.addEventListener('click', toggleLoginModal);
+      }
+      
+      // Login-Funktionalität
+      const loginSubmitBtn = document.getElementById('loginSubmitBtn');
+      if (loginSubmitBtn) {
+        loginSubmitBtn.addEventListener('click', function() {
+          const username = document.getElementById('username').value;
+          const password = document.getElementById('password').value;
+          
+          if (username && password) {
+            localStorage.setItem('loggedIn', 'true');
+            toggleLoginModal();
+            location.reload();
+          } else {
+            const errorEl = document.getElementById('login-error');
+            if (errorEl) {
+              errorEl.textContent = 'Bitte fülle alle Felder aus.';
+            }
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontakt - FutureBlog2000</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="page-container">
+        <!-- Header Bereich -->
+        <div class="header">
+            <div class="logo">FutureBlog<span class="logo-accent">2000</span></div>
+            <div class="nav-container">
+                <div class="nav-item" onclick="window.location.href='index.html'">Home</div>
+                <div class="nav-item" onclick="window.location.href='topics.html'">Themen</div>
+                <div class="nav-item active">Kontakt</div>
+                <div class="nav-item login-btn" onclick="toggleLoginModal()">Login</div>
+            </div>
+        </div>
+
+        <!-- Kontaktformular -->
+        <div class="contact-form">
+            <h2>Kontaktieren Sie uns</h2>
+            <form>
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" required placeholder="Ihr Name">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">E-Mail:</label>
+                    <input type="email" id="email" required placeholder="Ihre E-Mail-Adresse">
+                </div>
+
+                <div class="form-group">
+                    <label for="subject">Betreff:</label>
+                    <select id="subject">
+                        <option value="general">Allgemeine Anfrage</option>
+                        <option value="technical">Technisches Problem</option>
+                        <option value="suggestion">Artikelvorschlag</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Nachricht:</label>
+                    <textarea id="message" required placeholder="Ihre Nachricht"></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Absenden</button>
+            </form>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <div class="footer-title">FutureBlog2000</div>
+                    <div class="footer-text">Der Blog für zukunftsorientierte Denker mit einem Hauch von Nostalgie.</div>
+                </div>
+                <div class="footer-column">
+                    <div class="footer-subtitle">Navigation</div>
+                    <div class="footer-link">Home</div>
+                    <div class="footer-link">Themen</div>
+                    <div class="footer-link">Kontakt</div>
+                </div>
+                <div class="footer-column">
+                    <div class="footer-subtitle">Rechtliches</div>
+                    <div class="footer-link">Impressum</div>
+                    <div class="footer-link">Datenschutz</div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="copyright">© 2025 FutureBlog2000. Alle Rechte vorbehalten.</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Login Modal Funktion
+        function toggleLoginModal() {
+            const modal = document.getElementById('loginModal');
+            if (modal.style.display === 'flex') {
+                modal.style.display = 'none';
+            } else {
+                modal.style.display = 'flex';
+            }
+        }
+    </script>
+  <script src="main.js"></script>
+</body>
+</html>

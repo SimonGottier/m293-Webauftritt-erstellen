@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Themen – Simons Blog</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="topics.css">
+</head>
+<body>
+<div class="page-container">
+    <!-- Header Bereich -->
+    <div class="header">
+        <div class="logo">Simons<span class="logo-accent">Blog</span></div>
+        <div class="nav-container">
+            <div class="nav-item" onclick="window.location.href='index.html'">Home</div>
+            <div class="nav-item active">Themen</div>
+            <div class="nav-item" onclick="window.location.href='contact.html'">Kontakt</div>
+            <div class="nav-item" id="articleLink" style="display: none;" onclick="window.location.href='articles.html'">Artikel</div>
+            <div class="nav-item login-btn">Login</div>
+        </div>
+    </div>
+
+    <!-- Themen Hero -->
+    <div class="topics-hero">
+        <div class="topics-hero-content">
+            <div class="hero-title">Unsere Themen</div>
+            <div class="hero-subtitle">Entdecke Artikel zu verschiedenen Zukunftsthemen</div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="topics-filter">
+            <div class="filter-title">Filter nach Themen:</div>
+            <div class="filter-topics">
+                <div class="filter-topic active" data-topic="all">Alle</div>
+                <div class="filter-topic" data-topic="informatiker">Informatik</div>
+                <div class="filter-topic" data-topic="html">HTML</div>
+                <div class="filter-topic" data-topic="ki">KI</div>
+                <div class="filter-topic" data-topic="javascript">JavaScript</div>
+                <div class="filter-topic" data-topic="zukunft">Zukunft</div>
+                <div class="filter-topic" data-topic="react">React</div>
+                <div class="filter-topic" data-topic="blockchain">Blockchain</div>
+                <div class="filter-topic" data-topic="botanik">Botanik</div>
+                <div class="filter-topic" data-topic="ergonomie">Ergonomie</div>
+            </div>
+        </div>
+
+        <div class="articles-grid" id="articlesGrid"></div>
+        <div id="loginPrompt" style="text-align:center; margin-top:2rem; display:none;">Bitte zuerst einloggen, um die Artikel zu sehen.</div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="footer-content">
+            <div class="footer-column">
+                <div class="footer-title">Simons Blog</div>
+                <div class="footer-text">Der Blog für zukunftsorientierte Denker.</div>
+            </div>
+            <div class="footer-column">
+                <div class="footer-subtitle">Navigation</div>
+                <div class="footer-link" onclick="location.href='index.html'">Home</div>
+                <div class="footer-link" onclick="location.href='topics.html'">Themen</div>
+                <div class="footer-link" onclick="location.href='contact.html'">Kontakt</div>
+            </div>
+            <div class="footer-column">
+                <div class="footer-subtitle">Rechtliches</div>
+                <div class="footer-link">Impressum</div>
+                <div class="footer-link">Datenschutz</div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="copyright">© 2025 Simons Blog. Alle Rechte vorbehalten.</div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal-overlay" id="loginModal" style="display:none;">
+    <div class="modal-container">
+        <div class="modal-close">×</div>
+        <div class="modal-title">Login</div>
+        <div class="login-tabs">
+            <div class="login-tab active" data-tab="user">User</div>
+            <div class="login-tab" data-tab="admin">Admin</div>
+        </div>
+        <div class="login-form">
+            <div class="form-group">
+                <label for="username">Benutzername</label>
+                <input type="text" id="username" placeholder="Dein Benutzername">
+            </div>
+            <div class="form-group">
+                <label for="password">Passwort</label>
+                <input type="password" id="password" placeholder="Dein Passwort">
+            </div>
+            <button class="login-submit-btn">Einloggen</button>
+            <div id="login-error" class="login-error"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Nur das externe script.js einbinden, keine inline-Skripte -->
+<script src="main.js"></script>
+</body>
+</html>
